@@ -6,7 +6,7 @@ function sendWhatsApp() {
         return;
     }
 
-    let waMessage = `Hey Aapi! ❤️\n\nOn this special day, I want to make these promises to you:\n\n` + promiseText + `\n\nFrom your dear younger brother! 😊`;
+    let waMessage = `Hey Aapi! ❤️\n\nOn this special day, I want to make these promises to you:\n\n${promiseText}\n\nFrom your dear younger brother! 😊`;
 
     // Copy text to clipboard
     navigator.clipboard.writeText(waMessage).then(() => {
@@ -14,11 +14,10 @@ function sendWhatsApp() {
 
         // Open WhatsApp with pre-filled message
         let encodedMessage = encodeURIComponent(waMessage);
-        let waNumber = "916203325372";
-        let waURL = `https://wa.me/${waNumber}?text=${encodedMessage}`;
-        
+        let waURL = `https://api.whatsapp.com/send?phone=916203325372&text=${encodedMessage}`;
+
         // Redirect to WhatsApp chat
-        window.location.href = waURL;
+        window.open(waURL, "_blank");
     }).catch(err => {
         alert("Failed to copy text! Please copy manually.");
     });
