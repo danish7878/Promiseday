@@ -6,19 +6,21 @@ function sendPromise() {
         return;
     }
 
-    fetch("https://www.samazconnect.42web.io/sent1.php", {
-        method: "POST",
-        body: JSON.stringify({ promise: promiseText }),
-        headers: { "Content-Type": "application/json" }
+    emailjs.send("service_pjy6f0e", "template_yl869a9", {
+        promise: promiseText
+    }, "your_public_key")
+    .then(response => {
+        console.log("Email sent successfully!", response);
+        document.getElementById("thank-you-message").style.display = "block";
+        document.getElementById("aapi-promise").value = "";
     })
-    .then(response => response.text())
-    .then(data => {
-        if (data === "success") {
-            document.getElementById("thank-you-message").style.display = "block";
-            document.getElementById("aapi-promise").value = "";
-        } else {
-            alert("Failed to send! Try again.");
-        }
-    })
-    .catch(err => console.error(err));
+    .catch(error => {
+        console.error("Error sending email:", error);
+        alert("Failed to send! Try again.");
+    });
 }
+
+// Initialize EmailJS
+document.addEventListener("DOMContentLoaded", function() {
+    emailjs.init("ayiLP8Vw0kAR4gV_M");
+});
