@@ -6,7 +6,7 @@ function sendPromise() {
         return;
     }
 
-    fetch("send_email.php", {
+    fetch("sent.php", {
         method: "POST",
         body: JSON.stringify({ promise: promiseText }),
         headers: { "Content-Type": "application/json" }
