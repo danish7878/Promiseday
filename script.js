@@ -6,7 +6,7 @@ function sendPromise() {
         return;
     }
 
-    fetch("sent.php", {
+    fetch("https://www.samazconnect.42web.io/sent1.php", {
         method: "POST",
         body: JSON.stringify({ promise: promiseText }),
         headers: { "Content-Type": "application/json" }
